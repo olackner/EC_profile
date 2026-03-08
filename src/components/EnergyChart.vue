@@ -1,5 +1,25 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+const props = defineProps({
+  data: {
+    type: Array,
+    default: () => null
+  },
+  dateFrom: {
+    type: String,
+    default: '2026-03-08'
+  },
+  dateTo: {
+    type: String,
+    default: '2026-03-08'
+  }
+})
+
+const displayDate = computed(() => {
+  if (props.dateFrom === props.dateTo) return props.dateFrom
+  return `${props.dateFrom} to ${props.dateTo}`
+})
 
 const hours = ref([
   { label: '00:00', generation: 18, consumption: 35 },
@@ -37,12 +57,12 @@ const hours = ref([
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
       <div>
         <h3 class="text-2xl font-bold text-navy-blue">24-Hour Activity</h3>
-        <p class="text-slate-400 text-sm mt-1">Comparing clean energy generation vs household consumption</p>
+        <p class="text-slate-400 text-sm mt-1">Profile values created on 07.03.2026</p>
       </div>
-      <div class="flex bg-soft-gray p-1 rounded-xl border border-border-light">
-        <button class="px-6 py-2 rounded-lg text-xs font-bold bg-white text-navy-blue shadow-sm">24H</button>
-        <button class="px-6 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-navy-blue transition-colors">7 Days</button>
-        <button class="px-6 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-navy-blue transition-colors">30 Days</button>
+      <div class="flex items-center bg-soft-gray p-1 rounded-xl border border-border-light">
+        <button class="px-2 py-1 rounded-lg text-xs font-bold bg-white text-navy-blue shadow-sm"><span class="material-symbols-outlined text-base">chevron_left</span></button>
+        <p class="text-slate-400 text-sm px-4">{{ displayDate }}</p>
+        <button class="px-2 py-1 rounded-lg text-xs font-bold bg-white text-navy-blue shadow-sm"><span class="material-symbols-outlined text-base">chevron_right</span></button>
       </div>
     </div>
 
@@ -50,7 +70,7 @@ const hours = ref([
       <!-- Chart Area -->
       <div class="ml-16 flex items-end justify-between h-[300px] gap-1 md:gap-2 relative border-b border-l border-border-light mb-8">
         <!-- Y-Axis Labels (now absolute to the chart area) -->
-        <div class="absolute right-full top-0 bottom-0 flex flex-col justify-between text-[11px] text-slate-400 font-mono font-bold pr-4 pointer-events-none">
+        <div class="absolute right-full top-0 bottom-0 flex flex-col justify-between text-[11px] text-slate-400 font-mono font-thin pr-4 pointer-events-none">
           <div class="h-0 flex items-center justify-end"><span class="-translate-y-2">100kWh</span></div>
           <div class="h-0 flex items-center justify-end"><span class="-translate-y-2">80kWh</span></div>
           <div class="h-0 flex items-center justify-end"><span class="-translate-y-2">60kWh</span></div>
@@ -88,7 +108,7 @@ const hours = ref([
               <span class="text-[7px] md:text-[8px] font-mono font-bold text-navy-blue leading-none rotate-270 md:rotate-0 mb-1 pointer-events-none">{{ hour.consumption }}</span>
             </div>
           </div>
-          <span v-if="index % 4 === 0 || index === hours.length - 1" class="absolute -bottom-6 text-[9px] text-slate-400 font-mono font-bold whitespace-nowrap">{{ hour.label }}</span>
+          <span v-if="index % 4 === 0 || index === hours.length - 1" class="absolute -bottom-6 text-[9px] text-slate-400 font-mono font-thin whitespace-nowrap">{{ hour.label }}</span>
         </div>
       </div>
 
@@ -97,7 +117,7 @@ const hours = ref([
         <div class="flex items-center gap-6">
           <div class="flex items-center gap-2">
             <div class="w-3 h-3 rounded bg-leafy-green"></div>
-            <span class="text-xs font-bold text-navy-blue">Solar Generation</span>
+            <span class="text-xs font-bold text-navy-blue">Total Generation</span>
           </div>
           <div class="flex items-center gap-2">
             <div class="w-3 h-3 rounded bg-[#D1EEFD]"></div>
@@ -106,7 +126,7 @@ const hours = ref([
         </div>
         <div class="flex items-center gap-2 text-slate-400 text-[10px] font-medium uppercase tracking-wider">
           <span class="material-symbols-outlined text-sm">info</span>
-          <span>Updates every 15 minutes</span>
+          <span>15-Min Profile Aggregation (kWh)</span>
         </div>
       </div>
     </div>

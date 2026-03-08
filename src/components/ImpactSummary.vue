@@ -1,3 +1,12 @@
+<script setup>
+defineProps({
+  data: {
+    type: Array,
+    default: () => null
+  }
+})
+</script>
+
 <template>
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
     <div class="dashboard-card p-8 flex items-center gap-8">

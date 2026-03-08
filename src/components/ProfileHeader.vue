@@ -4,7 +4,7 @@
       <div class="flex items-center gap-12">
         <div class="flex items-center gap-2 text-leafy-green">
           <span class="material-symbols-outlined text-3xl font-bold">eco</span>
-          <h2 class="text-xl font-bold tracking-tight text-navy-blue">EnergyCommunity</h2>
+          <h2 class="text-xl font-bold tracking-tight text-navy-blue">Energy Data Services</h2>
         </div>
         <nav class="hidden md:flex items-center gap-8">
           <a class="nav-link" href="#">Dashboard</a>
@@ -18,7 +18,7 @@
           <span class="material-symbols-outlined text-slate-400 text-sm">search</span>
           <input 
             class="bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-400 w-48" 
-            placeholder="Search neighbors..." 
+            placeholder="Search Point of Deliery..." 
             type="text"
           />
         </div>
