@@ -50,7 +50,7 @@ const hours = ref([
       <!-- Chart Area -->
       <div class="ml-16 flex items-end justify-between h-[300px] gap-1 md:gap-2 relative border-b border-l border-border-light mb-8">
         <!-- Y-Axis Labels (now absolute to the chart area) -->
-        <div class="absolute right-full top-0 bottom-0 flex flex-col justify-between text-[11px] text-slate-400 font-bold pr-4 pointer-events-none">
+        <div class="absolute right-full top-0 bottom-0 flex flex-col justify-between text-[11px] text-slate-400 font-mono font-bold pr-4 pointer-events-none">
           <div class="h-0 flex items-center justify-end"><span class="-translate-y-2">100kWh</span></div>
           <div class="h-0 flex items-center justify-end"><span class="-translate-y-2">80kWh</span></div>
           <div class="h-0 flex items-center justify-end"><span class="-translate-y-2">60kWh</span></div>
@@ -77,7 +77,7 @@ const hours = ref([
               :style="{ height: hour.generation + '%' }"
               :title="`Generation: ${hour.generation}kWh`"
             >
-              <span class="text-[7px] md:text-[8px] font-bold text-white leading-none rotate-270 md:rotate-0 mb-1 pointer-events-none">{{ hour.generation }}</span>
+              <span class="text-[7px] md:text-[8px] font-mono font-bold text-white leading-none rotate-270 md:rotate-0 mb-1 pointer-events-none">{{ hour.generation }}</span>
             </div>
             <!-- Consumption Bar (Blue) -->
             <div 
@@ -85,10 +85,10 @@ const hours = ref([
               :style="{ height: hour.consumption + '%' }"
               :title="`Consumption: ${hour.consumption}kWh`"
             >
-              <span class="text-[7px] md:text-[8px] font-bold text-navy-blue leading-none rotate-270 md:rotate-0 mb-1 pointer-events-none">{{ hour.consumption }}</span>
+              <span class="text-[7px] md:text-[8px] font-mono font-bold text-navy-blue leading-none rotate-270 md:rotate-0 mb-1 pointer-events-none">{{ hour.consumption }}</span>
             </div>
           </div>
-          <span v-if="index % 4 === 0 || index === hours.length - 1" class="absolute -bottom-6 text-[9px] text-slate-400 font-bold whitespace-nowrap">{{ hour.label }}</span>
+          <span v-if="index % 4 === 0 || index === hours.length - 1" class="absolute -bottom-6 text-[9px] text-slate-400 font-mono font-bold whitespace-nowrap">{{ hour.label }}</span>
         </div>
       </div>
 
