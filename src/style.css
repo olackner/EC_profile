@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+    --color-navy-blue: #1e293b;
+    --color-leafy-green: #4ade80;
+    --color-sky-blue: #38bdf8;
+    --color-soft-gray: #f8fafc;
+    --color-border-light: #e2e8f0;
+
+    --font-sans: "Space Grotesk", ui-sans-serif, sans-serif;
+}
+
+@utility dashboard-card {
+    @apply bg-white border border-border-light rounded-2xl shadow-sm;
+}
+
+@utility nav-link {
+    @apply text-slate-500 hover:text-navy-blue transition-colors text-sm font-semibold;
+}
+
+@utility nav-link-active {
+    @apply text-navy-blue font-bold border-b-2 border-leafy-green pb-1;
+}
+
+body {
+    @apply bg-soft-gray text-navy-blue font-sans antialiased;
+}

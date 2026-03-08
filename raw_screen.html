@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Friendly EC Profile: Energy Monitor</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "navy-blue": "#1e293b",
+                        "leafy-green": "#4ade80",
+                        "sky-blue": "#38bdf8",
+                        "soft-gray": "#f8fafc",
+                        "border-light": "#e2e8f0",
+                    },
+                    fontFamily: {
+                        "sans": ["Space Grotesk", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-soft-gray text-navy-blue font-sans antialiased;
+            }
+        }
+        .dashboard-card {
+            @apply bg-white border border-border-light rounded-2xl shadow-sm;
+        }
+        .nav-link {
+            @apply text-slate-500 hover:text-navy-blue transition-colors text-sm font-semibold;
+        }
+        .nav-link-active {
+            @apply text-navy-blue font-bold border-b-2 border-leafy-green pb-1;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <header class="bg-white border-b border-border-light sticky top-0 z-50 px-6 py-4 lg:px-24">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex items-center gap-12">
+                    <div class="flex items-center gap-2 text-leafy-green">
+                        <span class="material-symbols-outlined text-3xl font-bold">eco</span>
+                        <h2 class="text-xl font-bold tracking-tight text-navy-blue">Energy Community</h2>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link nav-link-active" href="#">Details</a>
+                        <a class="nav-link" href="#">Marketplace</a>
+                        <a class="nav-link" href="#">Sustainability</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div
+                        class="hidden sm:flex items-center bg-soft-gray rounded-full px-4 py-2 border border-border-light">
+                        <span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+                        <input class="bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-400 w-48"
+                            placeholder="Search neighbors..." type="text" />
+                    </div>
+                    <button class="relative p-2 text-slate-500 hover:text-navy-blue">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="absolute top-2 right-2 w-2 h-2 bg-sky-blue rounded-full"></span>
+                    </button>
+                    <div class="h-10 w-10 rounded-full border border-border-light bg-cover bg-center shadow-sm"
+                        data-alt="User profile avatar portrait"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0Br49kjBn--op7r2soWsBXsqprN7rra2htDT3rN4Zhs3LvnsFmzubwVcq9177YpPYNuwmar6WSpcSSKS1jTIXn1kjiYTtFS3-2fyIU9rDIFUMnoBTvL61onhF28A0bl-viqoepV6UJmLDBzqi2y9Mu_yRQNRAAf6YM2Cj9XvzctOfAxoy-749hJQFZpYYPoGuz8wa3yGqe506Y-4XxAu5q3djxQ5-G2vMjvUwNmiSy0YLIHYGphnUnPb8MYG-XAoxdpUrMbMuMmBB')">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1 max-w-7xl mx-auto w-full px-6 py-10 lg:px-24">
+            <div class="flex items-center gap-2 mb-8 text-sm font-medium text-slate-400 uppercase tracking-wide">
+                <a class="hover:text-navy-blue" href="#">Directory</a>
+                <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <span class="text-navy-blue">Energy Dynamics Profile</span>
+            </div>
+            <div class="dashboard-card p-8 mb-10">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+                    <div class="flex items-center gap-8">
+                        <div class="relative">
+                            <div class="h-32 w-32 rounded-2xl bg-cover bg-center border border-border-light shadow-sm"
+                                data-alt="Member profile visual"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZCeJEtdlOWmGdbBCZpepapkarF-3ZuqtJZx4fBwMdpf0ePl8Hfk7BB_gfDy1hL2na9NfzWf1cdv9qFATY3J3e6Vb2WH4dWR1bye1UEApkJEnGPgbWA2cjZSL3KA3sU1gYFcKEiz0gGdxGQi4L7dUxlbOcMt02wLPju73wRffe0YkP2QJ4fUuIcHbgffjB4skCdDzhUXml5K856bG1hLfSBvllA1DKeRodIksRW7JbIENswqo-Q3wTBNQCwBvhjSq0c3Nqj1c1jyla')">
+                            </div>
+                            <div
+                                class="absolute -bottom-2 -right-2 bg-leafy-green text-white px-3 py-1 rounded-full text-[11px] font-bold tracking-wide uppercase shadow-sm">
+                                Premium
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <h1 class="text-3xl font-bold text-navy-blue">Energy Dynamics</h1>
+                                <span class="material-symbols-outlined text-sky-blue"
+                                    title="Verified Community Member">verified</span>
+                            </div>
+                            <div class="flex flex-wrap gap-y-2 gap-x-6 text-slate-500 text-sm font-medium">
+                                <span class="flex items-center gap-1.5"><span
+                                        class="material-symbols-outlined text-base">location_on</span> Berlin,
+                                    Germany</span>
+                                <span class="flex items-center gap-1.5"><span
+                                        class="material-symbols-outlined text-base">energy_savings_leaf</span> Member
+                                    since 2022</span>
+                                <span class="flex items-center gap-1.5 text-leafy-green font-bold"><span
+                                        class="material-symbols-outlined text-base">star</span> Top Contributor</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <button
+                            class="px-8 py-3 bg-white border border-border-light rounded-xl font-bold text-sm text-navy-blue hover:bg-soft-gray transition-all shadow-sm">Message</button>
+                        <button
+                            class="px-8 py-3 bg-navy-blue text-white rounded-xl font-bold text-sm hover:bg-slate-800 transition-all shadow-md">Follow
+                            Community</button>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                <div class="dashboard-card p-8 bg-white overflow-hidden relative">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-leafy-green/5 rounded-full -mr-16 -mt-16"></div>
+                    <p class="text-slate-400 text-xs font-bold mb-4 uppercase tracking-widest">Generation</p>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-bold text-navy-blue">42.5</span>
+                        <span class="text-leafy-green font-bold text-lg uppercase">kWh</span>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2 text-leafy-green text-sm font-bold">
+                        <span class="material-symbols-outlined text-lg">trending_up</span>
+                        <span>12.4% better than average</span>
+                    </div>
+                </div>
+                <div class="dashboard-card p-8 bg-white overflow-hidden relative">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-sky-blue/5 rounded-full -mr-16 -mt-16"></div>
+                    <p class="text-slate-400 text-xs font-bold mb-4 uppercase tracking-widest">Consumption</p>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-bold text-navy-blue">18.2</span>
+                        <span class="text-sky-blue font-bold text-lg uppercase">kWh</span>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2 text-slate-400 text-sm font-medium">
+                        <span class="material-symbols-outlined text-lg">check_circle</span>
+                        <span>Optimized efficiency</span>
+                    </div>
+                </div>
+                <div class="dashboard-card p-8 bg-white overflow-hidden relative">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-slate-100/50 rounded-full -mr-16 -mt-16"></div>
+                    <p class="text-slate-400 text-xs font-bold mb-4 uppercase tracking-widest">Net Exchange</p>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-4xl font-bold text-navy-blue">24.3</span>
+                        <span class="text-slate-400 font-bold text-lg uppercase">kWh</span>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2 text-slate-400 text-sm font-medium">
+                        <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        <span>Surplus shared with neighbors</span>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-card p-10 mb-10">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+                    <div>
+                        <h3 class="text-2xl font-bold text-navy-blue">24-Hour Activity</h3>
+                        <p class="text-slate-400 text-sm mt-1">Comparing clean energy generation vs household
+                            consumption</p>
+                    </div>
+                    <div class="flex bg-soft-gray p-1 rounded-xl border border-border-light">
+                        <button
+                            class="px-6 py-2 rounded-lg text-xs font-bold bg-white text-navy-blue shadow-sm">24H</button>
+                        <button
+                            class="px-6 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-navy-blue transition-colors">7
+                            Days</button>
+                        <button
+                            class="px-6 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-navy-blue transition-colors">30
+                            Days</button>
+                    </div>
+                </div>
+                <div class="relative h-96 w-full flex flex-col justify-end">
+                    <div
+                        class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-[11px] text-slate-400 font-bold h-[300px] mb-8 pr-4">
+                        <span>50kWh</span>
+                        <span>40kWh</span>
+                        <span>30kWh</span>
+                        <span>20kWh</span>
+                        <span>10kWh</span>
+                        <span>0kWh</span>
+                    </div>
+                    <div
+                        class="ml-16 flex items-end justify-between h-[300px] gap-2 lg:gap-4 relative border-b border-border-light mb-8">
+                        <div class="flex flex-col items-center flex-1 h-full justify-end relative">
+                            <div class="w-full bg-leafy-green rounded-md h-[18%] z-10"></div>
+                            <div class="w-full bg-[#D1EEFD] rounded-md h-[35%] -mt-1"></div>
+                            <span class="absolute -bottom-6 text-[10px] text-slate-400 font-bold">00:00</span>
+                        </div>
+                        <div class="flex flex-col items-center flex-1 h-full justify-end relative">
+                            <div class="w-full bg-leafy-green rounded-md h-[12%] z-10"></div>
+                            <div class="w-full bg-[#D1EEFD] rounded-md h-[25%] -mt-1"></div>
+                            <span class="absolute -bottom-6 text-[10px] text-slate-400 font-bold">04:00</span>
+                        </div>
+                        <div class="flex flex-col items-center flex-1 h-full justify-end relative">
+                            <div class="w-full bg-leafy-green rounded-md h-[65%] z-10"></div>
+                            <div class="w-full bg-[#D1EEFD] rounded-md h-[30%] -mt-1"></div>
+                            <span class="absolute -bottom-6 text-[10px] text-slate-400 font-bold">08:00</span>
+                        </div>
+                        <div class="flex flex-col items-center flex-1 h-full justify-end relative">
+                            <div class="w-full bg-leafy-green rounded-md h-[85%] z-10"></div>
+                            <div class="w-full bg-[#D1EEFD] rounded-md h-[28%] -mt-1"></div>
+                            <span class="absolute -bottom-6 text-[10px] text-slate-400 font-bold">12:00</span>
+                        </div>
+                        <div class="flex flex-col items-center flex-1 h-full justify-end relative">
+                            <div class="w-full bg-leafy-green rounded-md h-[95%] z-10"></div>
+                            <div class="w-full bg-[#D1EEFD] rounded-md h-[32%] -mt-1"></div>
+                            <span class="absolute -bottom-6 text-[10px] text-navy-blue font-bold">16:00</span>
+                        </div>
+                        <div class="flex flex-col items-center flex-1 h-full justify-end relative">
+                            <div class="w-full bg-leafy-green rounded-md h-[45%] z-10"></div>
+                            <div class="w-full bg-[#D1EEFD] rounded-md h-[40%] -mt-1"></div>
+                            <span class="absolute -bottom-6 text-[10px] text-slate-400 font-bold">20:00</span>
+                        </div>
+                        <div class="flex flex-col items-center flex-1 h-full justify-end relative">
+                            <div class="w-full bg-leafy-green rounded-md h-[15%] z-10"></div>
+                            <div class="w-full bg-[#D1EEFD] rounded-md h-[30%] -mt-1"></div>
+                            <span class="absolute -bottom-6 text-[10px] text-slate-400 font-bold">23:59</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-between ml-16">
+                        <div class="flex items-center gap-6">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded bg-leafy-green"></div>
+                                <span class="text-xs font-bold text-navy-blue">Solar Generation</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded bg-[#D1EEFD]"></div>
+                                <span class="text-xs font-bold text-navy-blue">Total Consumption</span>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-slate-400 text-[10px] font-medium uppercase tracking-wider">
+                            <span class="material-symbols-outlined text-sm">info</span>
+                            <span>Updates every 15 minutes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="dashboard-card p-8 flex items-center gap-8">
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-leafy-green/10 text-leafy-green flex items-center justify-center">
+                        <span class="material-symbols-outlined text-3xl">battery_charging_full</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-base font-bold text-navy-blue mb-2">Storage Capacity</h4>
+                        <div class="w-full bg-soft-gray rounded-full h-2 mb-3 border border-border-light">
+                            <div class="bg-leafy-green h-full rounded-full w-[88%]"></div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs font-bold">
+                            <span class="text-leafy-green">88% Charged</span>
+                            <span class="text-slate-400 font-medium">12.4kWh ready</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-card p-8 flex items-center gap-8">
+                    <div class="w-16 h-16 rounded-2xl bg-sky-blue/10 text-sky-blue flex items-center justify-center">
+                        <span class="material-symbols-outlined text-3xl">energy_savings_leaf</span>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-bold text-navy-blue mb-1">Impact This Month</h4>
+                        <p class="text-2xl font-bold text-navy-blue">4.2 <span
+                                class="text-sm font-medium text-slate-400">Tons CO2 saved</span></p>
+                        <p class="text-sky-blue text-[11px] font-bold flex items-center gap-1.5 mt-2">
+                            <span class="material-symbols-outlined text-base">psychology</span>
+                            <span>Better than 92% of local members</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="bg-white border-t border-border-light py-10 px-6 lg:px-24">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2 text-slate-400">
+                    <span class="material-symbols-outlined text-xl">eco</span>
+                    <span class="font-bold text-sm">EnergyCommunity</span>
+                </div>
+                <div class="flex gap-10 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                    <a class="hover:text-navy-blue" href="#">Privacy Policy</a>
+                    <a class="hover:text-navy-blue" href="#">Terms of Service</a>
+                    <a class="hover:text-navy-blue" href="#">Network Security</a>
+                </div>
+                <p class="text-slate-400 text-xs font-medium">© 2024 Energy Dynamics • Community First</p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>
