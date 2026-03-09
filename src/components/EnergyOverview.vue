@@ -12,7 +12,6 @@ const generationValue = computed(() => {
   if (props.data && props.data.length > 0 && props.data[0].s_prof_value) {
     return props.data[0].s_prof_value.prof_value
   }
-  return 42.5
 })
 </script>
 
