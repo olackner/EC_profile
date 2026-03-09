@@ -1,8 +1,24 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   ecData: {
     type: Object,
   }
+})
+
+const g_PoDs = computed(() => {
+  if (props.ecData?.t_pod && Array.isArray(props.ecData.t_pod)) {
+    return props.ecData.t_pod.filter(pod => pod.pod_type === 'G').length
+  }
+  return 0
+})
+
+const c_PoDs = computed(() => {
+  if (props.ecData?.t_pod && Array.isArray(props.ecData.t_pod)) {
+    return props.ecData.t_pod.filter(pod => pod.pod_type === 'C').length
+  }
+  return 0
 })
 </script>
 
@@ -29,10 +45,12 @@ defineProps({
           </div>
           <div class="flex flex-wrap gap-y-2 gap-x-6 text-slate-500 text-sm font-medium">
             <span class="flex items-center gap-1.5"><span
-                class="material-symbols-outlined text-base">calendar_month</span>since 08.03.2026</span>
-            <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base">input</span>12
+                class="material-symbols-outlined text-base">calendar_month</span>since 01.01.2025</span>
+            <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base">input</span>{{
+              g_PoDs }}
               Generation PoDs</span>
-            <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base">output</span>36
+            <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base">output</span>{{
+              c_PoDs }}
               Consumption PoDs</span>
           </div>
         </div>
