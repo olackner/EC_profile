@@ -64,7 +64,9 @@ const ecDisModel = computed(() => {
           </div>
           <div class="flex flex-wrap gap-y-2 gap-x-6 text-slate-500 text-sm font-medium">
             <span class="flex items-center gap-1.5"><span
-                class="material-symbols-outlined text-base">calendar_month</span>since 01.01.2025</span>
+                class="material-symbols-outlined text-base">calendar_month</span>Active from {{
+                  ecData?.s_ec?.date_start
+                }}</span>
             <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-base">input</span>{{
               g_PoDs }}
               Generation PoDs</span>

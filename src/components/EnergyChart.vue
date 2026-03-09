@@ -2,23 +2,14 @@
 import { ref, computed } from 'vue'
 
 const props = defineProps({
-  data: {
+  ecData: {
     type: Object,
-    default: () => ({})
   },
-  dateFrom: {
-    type: String,
-    default: '2026-03-08'
-  },
-  dateTo: {
-    type: String,
-    default: '2026-03-08'
-  }
 })
 
 const displayDate = computed(() => {
-  if (props.dateFrom === props.dateTo) return props.dateFrom
-  return `${props.dateFrom} to ${props.dateTo}`
+  if (props.ecData?.date_from === props.ecData?.date_to) return props.ecData?.date_from
+  return `${props.ecData?.date_from} to ${props.ecData?.date_to}`
 })
 
 const hours = ref([
@@ -48,8 +39,7 @@ const hours = ref([
   { label: '23:59', generation: 15, consumption: 30 }
 ])
 
-// For a full 24h chart, we can generate mock data for missing hours if needed
-// but let's stick to the design's specific points for now.
+
 </script>
 
 <template>
@@ -57,20 +47,24 @@ const hours = ref([
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
       <div>
         <h3 class="text-2xl font-bold text-navy-blue">24-Hour Activity</h3>
-        <p class="text-slate-400 text-sm mt-1">Profile values created on 07.03.2026</p>
+        <p class="text-slate-400 text-sm mt-1">Profile values created on {{ ecData?.s_ec?.date_created }}</p>
       </div>
       <div class="flex items-center bg-soft-gray p-1 rounded-xl border border-border-light">
-        <button class="px-2 py-1 rounded-lg text-xs font-bold bg-white text-navy-blue shadow-sm"><span class="material-symbols-outlined text-base">chevron_left</span></button>
+        <button class="px-2 py-1 rounded-lg text-xs font-bold bg-white text-navy-blue shadow-sm"><span
+            class="material-symbols-outlined text-base">chevron_left</span></button>
         <p class="text-slate-400 text-sm px-4">{{ displayDate }}</p>
-        <button class="px-2 py-1 rounded-lg text-xs font-bold bg-white text-navy-blue shadow-sm"><span class="material-symbols-outlined text-base">chevron_right</span></button>
+        <button class="px-2 py-1 rounded-lg text-xs font-bold bg-white text-navy-blue shadow-sm"><span
+            class="material-symbols-outlined text-base">chevron_right</span></button>
       </div>
     </div>
 
     <div class="relative h-96 w-full flex flex-col justify-end">
       <!-- Chart Area -->
-      <div class="ml-16 flex items-end justify-between h-[300px] gap-1 md:gap-2 relative border-b border-l border-border-light mb-8">
+      <div
+        class="ml-16 flex items-end justify-between h-[300px] gap-1 md:gap-2 relative border-b border-l border-border-light mb-8">
         <!-- Y-Axis Labels (now absolute to the chart area) -->
-        <div class="absolute right-full top-0 bottom-0 flex flex-col justify-between text-[11px] text-slate-400 font-mono font-thin pr-4 pointer-events-none">
+        <div
+          class="absolute right-full top-0 bottom-0 flex flex-col justify-between text-[11px] text-slate-400 font-mono font-thin pr-4 pointer-events-none">
           <div class="h-0 flex items-center justify-end"><span class="-translate-y-2">100kWh</span></div>
           <div class="h-0 flex items-center justify-end"><span class="-translate-y-2">80kWh</span></div>
           <div class="h-0 flex items-center justify-end"><span class="-translate-y-2">60kWh</span></div>
@@ -89,26 +83,29 @@ const hours = ref([
           <div class="h-0"></div> <!-- Bottom line is handled by border-b -->
         </div>
 
-        <div v-for="(hour, index) in hours" :key="hour.label" class="flex flex-col items-center flex-1 h-full justify-end relative group">
+        <div v-for="(hour, index) in hours" :key="hour.label"
+          class="flex flex-col items-center flex-1 h-full justify-end relative group">
           <div class="flex items-end justify-center w-full h-full gap-[1px]">
             <!-- Generation Bar (Green) -->
-            <div 
-              class="flex-1 bg-leafy-green rounded-t-[1px] z-10 transition-all duration-500 flex items-center justify-center overflow-hidden hover:brightness-110 cursor-help min-w-[4px]" 
-              :style="{ height: hour.generation + '%' }"
-              :title="`Generation: ${hour.generation}kWh`"
-            >
-              <span class="text-[7px] md:text-[8px] font-mono font-bold text-white leading-none rotate-270 md:rotate-0 mb-1 pointer-events-none">{{ hour.generation }}</span>
+            <div
+              class="flex-1 bg-leafy-green rounded-t-[1px] z-10 transition-all duration-500 flex items-center justify-center overflow-hidden hover:brightness-110 cursor-help min-w-[4px]"
+              :style="{ height: hour.generation + '%' }" :title="`Generation: ${hour.generation}kWh`">
+              <span
+                class="text-[7px] md:text-[8px] font-mono font-bold text-white leading-none rotate-270 md:rotate-0 mb-1 pointer-events-none">{{
+                  hour.generation }}</span>
             </div>
             <!-- Consumption Bar (Blue) -->
-            <div 
-              class="flex-1 bg-[#D1EEFD] rounded-t-[1px] transition-all duration-500 flex items-center justify-center overflow-hidden hover:brightness-105 cursor-help min-w-[4px]" 
-              :style="{ height: hour.consumption + '%' }"
-              :title="`Consumption: ${hour.consumption}kWh`"
-            >
-              <span class="text-[7px] md:text-[8px] font-mono font-bold text-navy-blue leading-none rotate-270 md:rotate-0 mb-1 pointer-events-none">{{ hour.consumption }}</span>
+            <div
+              class="flex-1 bg-[#D1EEFD] rounded-t-[1px] transition-all duration-500 flex items-center justify-center overflow-hidden hover:brightness-105 cursor-help min-w-[4px]"
+              :style="{ height: hour.consumption + '%' }" :title="`Consumption: ${hour.consumption}kWh`">
+              <span
+                class="text-[7px] md:text-[8px] font-mono font-bold text-navy-blue leading-none rotate-270 md:rotate-0 mb-1 pointer-events-none">{{
+                  hour.consumption }}</span>
             </div>
           </div>
-          <span v-if="index % 4 === 0 || index === hours.length - 1" class="absolute -bottom-6 text-[9px] text-slate-400 font-mono font-thin whitespace-nowrap">{{ hour.label }}</span>
+          <span v-if="index % 4 === 0 || index === hours.length - 1"
+            class="absolute -bottom-6 text-[9px] text-slate-400 font-mono font-thin whitespace-nowrap">{{ hour.label
+            }}</span>
         </div>
       </div>
 
