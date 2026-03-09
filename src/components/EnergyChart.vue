@@ -3,8 +3,8 @@ import { ref, computed } from 'vue'
 
 const props = defineProps({
   data: {
-    type: Array,
-    default: () => null
+    type: Object,
+    default: () => ({})
   },
   dateFrom: {
     type: String,

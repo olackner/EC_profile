@@ -1,8 +1,7 @@
 <script setup>
 defineProps({
   data: {
-    type: Array,
-    default: () => []
+    type: Object,
   }
 })
 </script>
@@ -22,7 +21,7 @@ defineProps({
         </div>
         <div>
           <div class="flex items-center gap-3 mb-2">
-            <h1 class="text-3xl font-bold text-navy-blue">EC-Id: #{{ data.ecData.s_ec.ec_id }}</h1>                        
+            <h1 class="text-3xl font-bold text-navy-blue">EC-Id: #{{ data?.ecData?.s_ec?.ec_id }}</h1>                        
           </div>
           <div class="flex items-center gap-3 mb-2">
             <h1 class="text-2xl font-bold text-navy-blue">Citizen Energy Community</h1>

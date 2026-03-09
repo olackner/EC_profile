@@ -3,8 +3,8 @@ import { computed } from 'vue'
 
 const props = defineProps({
   data: {
-    type: Array,
-    default: () => null
+    type: Object,
+    default: () => ({})
   }
 })
 
@@ -12,8 +12,10 @@ const generationValue = computed(() => {
   if (props.data && props.data.length > 0 && props.data[0].s_prof_value) {
     return props.data[0].s_prof_value.prof_value
   }
+  return 42.5
 })
 </script>
+
 
 <template>
   <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">

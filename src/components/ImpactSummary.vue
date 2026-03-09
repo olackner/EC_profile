@@ -1,8 +1,8 @@
 <script setup>
 defineProps({
   data: {
-    type: Array,
-    default: () => null
+    type: Object,
+    default: () => ({})
   }
 })
 </script>
