@@ -7,6 +7,7 @@ const props = defineProps({
   }
 })
 
+// Number of Generation PoDs
 const g_PoDs = computed(() => {
   if (props.ecData?.t_pod && Array.isArray(props.ecData.t_pod)) {
     return props.ecData.t_pod.filter(pod => pod.pod_type === 'G').length
@@ -14,12 +15,29 @@ const g_PoDs = computed(() => {
   return 0
 })
 
+// Number of Consumption PoDs
 const c_PoDs = computed(() => {
   if (props.ecData?.t_pod && Array.isArray(props.ecData.t_pod)) {
     return props.ecData.t_pod.filter(pod => pod.pod_type === 'C').length
   }
   return 0
 })
+
+// EC Distribution Model
+const ecDisModel = computed(() => {
+  if (props.ecData?.s_ec?.ec_dis_model) {
+    if (props.ecData.s_ec.ec_dis_model === "D") {
+      return "Dynamic"
+    }
+    else if (props.ecData.s_ec.ec_dis_model === "S") {
+      return "Static"
+    }
+    else {
+      return "<Unknown Distribution Model>"
+    }
+  }
+})
+
 </script>
 
 <template>
@@ -40,7 +58,8 @@ const c_PoDs = computed(() => {
             <h1 class="text-3xl font-bold text-navy-blue">EC-Id: #{{ ecData?.s_ec?.ec_id }}</h1>
           </div>
           <div class="flex items-center gap-3 mb-2">
-            <h1 class="text-2xl font-bold text-navy-blue">Citizen Energy Community</h1>
+            <h1 class="text-2xl font-bold text-navy-blue">{{ ecDisModel }} {{ ecData?.s_ec?.ec_type }} Energy Community
+            </h1>
 
           </div>
           <div class="flex flex-wrap gap-y-2 gap-x-6 text-slate-500 text-sm font-medium">

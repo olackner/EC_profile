@@ -25,7 +25,7 @@ export async function ec_data_get(ec_id, date_from, date_to) {
             date_from: local_date_from,
             date_to: local_date_to,
             ec_type: "GEA",
-            gc_dis_model: "Dynamic",
+            gc_dis_model: "D",
         },
         t_pod: [
             {
