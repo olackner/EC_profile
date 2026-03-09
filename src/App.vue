@@ -35,7 +35,7 @@ onMounted(async () => {
 <template>
   <div class="relative flex min-h-screen w-full flex-col">
     <ProfileHeader />
-    
+
     <main class="flex-1 max-w-7xl mx-auto w-full px-6 py-10 lg:px-24">
       <div class="flex items-center gap-2 mb-8 text-sm font-medium text-slate-400 uppercase tracking-wide">
         <a class="hover:text-navy-blue" href="#">Dashboard</a>
@@ -47,10 +47,10 @@ onMounted(async () => {
         <p class="text-slate-400 font-medium">Loading Energy Community Data...</p>
       </div>
       <div v-else>
-        <ProfileCard :data="ecData" />
-        <EnergyOverview :data="ecData" />
-        <EnergyChart :data="ecData" />
-        <ImpactSummary :data="ecData" />
+        <ProfileCard :ecData="ecData" />
+        <EnergyOverview :ecData="ecData" />
+        <EnergyChart :ecData="ecData" />
+        <ImpactSummary :ecData="ecData" />
       </div>
     </main>
 
