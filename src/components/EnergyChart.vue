@@ -4,12 +4,14 @@ import { ref, computed } from 'vue'
 const props = defineProps({
   ecData: {
     type: Object,
+    default: () => ({})
   },
 })
 
 const displayDate = computed(() => {
-  if (props.ecData?.date_from === props.ecData?.date_to) return props.ecData?.date_from
-  return `${props.ecData?.date_from} to ${props.ecData?.date_to}`
+  const ec = props.ecData?.s_ec
+  if (ec?.date_from === ec?.date_to) return ec?.date_from
+  return `${ec?.date_from} to ${ec?.date_to}`
 })
 
 const hours = ref([
